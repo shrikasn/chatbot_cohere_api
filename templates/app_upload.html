@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Doc Chatbot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f3;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    .section {
+      width: 90%;
+      max-width: 700px;
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input[type="text"], input[type="file"] {
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px;
+      background: #3498db;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #2c80b4;
+    }
+
+    #chatbox {
+      height: 400px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .message {
+      padding: 10px 15px;
+      border-radius: 10px;
+      max-width: 75%;
+    }
+
+    .user {
+      background: #d1ecf1;
+      align-self: flex-end;
+      color: #0c5460;
+    }
+
+    .bot {
+      background: #e2f0cb;
+      align-self: flex-start;
+      color: #4b5320;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Upload Section -->
+  <div class="section">
+    <h2>Upload Document(s)</h2>
+    <form method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".pdf,.docx,.xlsx" multiple required>
+      <button type="submit">Upload</button>
+    </form>
+    {% if session.doc_text %}
+      <p><strong>Documents uploaded and ready.</strong></p>
+    {% endif %}
+  </div>
+
+  <!-- Chatbot Section -->
+  <div class="section">
+    <h2>Chat with Document</h2>
+    <div id="chatbox">
+      {% for message in chat_history %}
+        <div class="message {{ message.sender }}">{{ message.text }}</div>
+      {% endfor %}
+    </div>
+    <form method="POST">
+      <input type="text" name="question" placeholder="Ask a question..." required>
+      <button type="submit">Ask</button>
+    </form>
+  </div>
+
+</body>
+</html>

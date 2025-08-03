@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chatbot</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #f8f9fa);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h2 {
+      color: #34495e;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 1px #ccc;
+    }
+
+    #chatbox {
+      background: #ffffff;
+      width: 90%;
+      max-width: 600px;
+      height: 450px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .message {
+      padding: 12px 15px;
+      border-radius: 12px;
+      max-width: 75%;
+      margin-bottom: 10px;
+      word-wrap: break-word;
+      font-size: 15px;
+    }
+
+    .user {
+      background-color: #d1ecf1;
+      align-self: flex-end;
+      color: #0c5460;
+    }
+
+    .bot {
+      background-color: #e2f0cb;
+      align-self: flex-start;
+      color: #4b5320;
+    }
+
+    #input-area {
+      width: 90%;
+      max-width: 600px;
+      display: flex;
+      gap: 10px;
+    }
+
+    #user-input {
+      flex: 1;
+      padding: 12px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      outline: none;
+      box-shadow: inset 1px 1px 3px rgba(0,0,0,0.05);
+    }
+
+    button {
+      background: linear-gradient(135deg, #3498db, #2980b9);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #2980b9, #1c5980);
+    }
+  </style>
+</head>
+<body>
+  <h2>Assistant</h2>
+  <div id="chatbox">
+    {% for message in chat_history %}
+      <div class="message {{ message.sender }}">{{ message.text }}</div>
+    {% endfor %}
+  </div>
+  <form id="input-area" method="POST">
+    <input type="text" id="user-input" name="question" placeholder="Ask here..." required />
+    <button type="submit">Send</button>
+  </form>
+</body>
+</html>

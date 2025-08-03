@@ -1,0 +1,10 @@
+flask
+transformers
+torch
+pymupdf 
+python-docx 
+openpyxl
+fitz 
+cohere 
+PyPDF2
+
