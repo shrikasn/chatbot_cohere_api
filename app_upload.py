@@ -7,7 +7,7 @@ import openpyxl
 import cohere
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+app.secret_key = your_secret_key
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'pdf', 'docx', 'xlsx'}
@@ -15,7 +15,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # Cohere setup
-co = cohere.Client("uY6A7W64ORC45Jy2RuVxURTnA02gmaO2BEQkOZOa")  
+co = cohere.Client("your_api_key_that_you_got_from_cohere")  
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
