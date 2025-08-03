@@ -4,9 +4,9 @@ import os
 from docx import Document
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+app.secret_key = your_secret_key
 
-co = cohere.Client("uY6A7W64ORC45Jy2RuVxURTnA02gmaO2BEQkOZOa")  
+co = cohere.Client("your_api_key_that_you_got_from_cohere")  
 
 def read_docx_text(docx_path):
     try:
